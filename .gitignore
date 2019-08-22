@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# OSX
+.DS_Store
+
+# Tags and doxygen
+/doc/doxytag
+/dox
