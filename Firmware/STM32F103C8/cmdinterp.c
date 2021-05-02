@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include "cmdinterp.h"
@@ -101,7 +102,7 @@ int cmdinterp_run(cmdinterp_t *hdl)
                             hdl->param[j].i = strtol(hdl->tmp, NULL, 10);
                         } else {
                             hdl->paramdt[j] = CMDINTERP_DTYPE_FLOAT;
-                            hdl->param[j].f = strtod(hdl->tmp, NULL);
+                            hdl->param[j].f = strtof(hdl->tmp, NULL);
                         }
                     }
                     /* Advance or run. */
@@ -158,10 +159,10 @@ static int cmdinterp_nextc(void *s)
 {
     return fgetc((FILE*)s);
 }
-static cmdinterp_data_t f0(cmdinterp_data_t a, cmdinterp_data_t b)
+static cmdinterp_data_t f0(cmdinterp_t *hdl)
 {
     cmdinterp_data_t ret;
-    ret.f = a.f + b.f;
+    ret.f = hdl->param[0].f + hdl->param[1].f;
     return ret;
 }
 static cmdinterp_data_t cmdinterp_cmderr(cmdinterp_t *hdl)
